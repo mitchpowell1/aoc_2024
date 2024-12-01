@@ -1,0 +1,7 @@
+# Don't version anything in the inputs directory
+# Per the FAQ in https://adventofcode.com/2024/about
+*
+
+# Keep this file checked in so that git keeps the inputs directory
+# though since the fetcher assumes it exists
+!.gitignore
