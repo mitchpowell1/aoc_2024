@@ -2,7 +2,7 @@ pub mod input_fetcher;
 pub mod solutions;
 
 use input_fetcher::fetch_input;
-use solutions::{Solution, D1};
+use solutions::{Solution, D1, D2};
 
 use clap::Args;
 use clap::Parser;
@@ -45,6 +45,7 @@ fn main() {
 
     let mut runner: Box<dyn Solution> = match day {
         1 => Box::new(D1::default()),
+        2 => Box::new(D2::default()),
         _ => todo!("Not yet implemented"),
     };
 
