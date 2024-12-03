@@ -2,7 +2,7 @@ pub mod input_fetcher;
 pub mod solutions;
 
 use input_fetcher::fetch_input;
-use solutions::{Solution, D1, D2};
+use solutions::{Solution, D1, D2, D3};
 
 use clap::Args;
 use clap::Parser;
@@ -41,11 +41,20 @@ fn main() {
 
     let day = args.day;
 
-    let input = fetch_input(day);
+    let input = if let Some(CustomInput {
+        input_literal: Some(literal),
+        ..
+    }) = args.custom_input
+    {
+        literal
+    } else {
+        fetch_input(day)
+    };
 
     let mut runner: Box<dyn Solution> = match day {
         1 => Box::new(D1::default()),
         2 => Box::new(D2::default()),
+        3 => Box::new(D3::default()),
         _ => todo!("Not yet implemented"),
     };
 
