@@ -1,4 +1,4 @@
-use std::collections::HashSet;
+use fxhash::FxHashSet;
 
 use super::Solution;
 use crate::utils::grid_utils::{GridUtils, CARDINAL_OFFSETS};
@@ -68,7 +68,7 @@ impl Solution for D6 {
         count.to_string()
     }
     fn p2(&mut self) -> String {
-        let mut visited: HashSet<(usize, i32, i32)> = HashSet::new();
+        let mut visited: FxHashSet<(usize, i32, i32)> = FxHashSet::default();
         let mut count = 0;
         for row in 0..self.grid.height() {
             for col in 0..self.grid.width() {
@@ -82,19 +82,17 @@ impl Solution for D6 {
                 let (mut offset_i, (mut di, mut dj)) = offsets.next().unwrap();
                 let (mut i, mut j) = self.guard_position;
                 'outer: while self.grid.in_bounds(i, j) {
-                    if visited.contains(&(offset_i, i, j)) {
-                        count += 1;
-                        break;
-                    }
-                    visited.insert((offset_i, i, j));
                     loop {
-                        i += di;
-                        j += dj;
                         if !self.grid.in_bounds(i, j) {
                             break 'outer;
                         }
 
                         if let Cell::Obstacle = self.grid[i as usize][j as usize] {
+                            if visited.contains(&(offset_i, i, j)) {
+                                count += 1;
+                                break 'outer;
+                            }
+                            visited.insert((offset_i, i, j));
                             i -= di;
                             j -= dj;
                             let (next_oi, next_o) = offsets.next().unwrap();
@@ -104,6 +102,8 @@ impl Solution for D6 {
                         }
                         break;
                     }
+                    i += di;
+                    j += dj;
                 }
 
                 self.grid[row][col] = Cell::Empty;
