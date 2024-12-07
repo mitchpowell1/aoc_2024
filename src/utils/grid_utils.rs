@@ -11,7 +11,7 @@ pub const ALL_OFFSETS: &[(i32, i32)] = &[
 ];
 
 /// N, S, E, W offsets from a location in a 2d grid
-pub const CARDINAL_OFFSETS: &[(i32, i32)] = &[(-1, 0), (0, -1), (0, 1), (1, 0)];
+pub const CARDINAL_OFFSETS: &[(i32, i32)] = &[(-1, 0), (0, 1), (1, 0), (0, -1)];
 
 /// Diagonal offsets from a location in a 2d grid
 pub const DIAGONAL_OFFSETS: &[(i32, i32)] = &[(-1, -1), (-1, 1), (1, -1), (1, 1)];

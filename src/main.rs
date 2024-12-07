@@ -3,7 +3,7 @@ pub mod solutions;
 pub mod utils;
 
 use input_fetcher::fetch_input;
-use solutions::{Solution, D1, D2, D3, D4, D5};
+use solutions::{Solution, D1, D2, D3, D4, D5, D6};
 
 use clap::Args;
 use clap::Parser;
@@ -58,6 +58,7 @@ fn main() {
         3 => Box::new(D3::default()),
         4 => Box::new(D4::default()),
         5 => Box::new(D5::default()),
+        6 => Box::new(D6::default()),
         _ => todo!("Not yet implemented"),
     };
 
