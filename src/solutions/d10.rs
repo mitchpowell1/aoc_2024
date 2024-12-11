@@ -36,7 +36,7 @@ impl D10 {
                 let r = (r as i32 + *dr) as usize;
                 let c = (c as i32 + *dc) as usize;
                 if (!check_for_visitation || !self.visited.contains(&(r, c)))
-                    && self.grid[r as usize][c as usize] == value + 1
+                    && self.grid[r][c] == value + 1
                 {
                     self.to_visit.push_back((r, c));
                     self.visited.insert((r, c));
